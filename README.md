@@ -6,5 +6,6 @@ Not in the habit of rehashing things I've already written, so a blog post I wrot
 If you want to try decrypting a message I wrote - which uses a completely different key structure than the example .ini file - go <a href="https://pastebin.com/raw/frQ7SMZ3">here</a>. [pastebin]
 
 <h1>Ideas:</h1>
-* Wondering if spaces should also be encrypted.
-* Wondering if invalid characters should use the "similar looking" characters. (ロ & 口, ニ & 二, etc.)
+
+1. Wondering if spaces should also be encrypted.
+2. Wondering if invalid characters should use the "similar looking" characters. (ロ & 口, ニ & 二, etc.)
