@@ -9,3 +9,4 @@ If you want to try decrypting a message I wrote - which uses a completely differ
 
 1. Wondering if spaces should also be encrypted.
 2. Wondering if invalid characters should use the "similar looking" characters. (ロ & 口, ニ & 二, etc.)
+3. Maybe a way of using similar looking characters as long as there's a way of checking the duplicates twice. The only problem with this is if someone writes down the ciphertext.
