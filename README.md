@@ -16,4 +16,4 @@ And <a href="https://pastebin.com/raw/QwN9NQrg">here's</a> [pastebin] another on
 <h1>Progress:</h1>
 
 1. Added. Basically it checks to see if Space=... is in the .ini.
-3. This didn't seem to be an issue in mIRC. It could seem to tell the difference between へ (Hiragana) and ヘ (Katakana). The only issue that arises with this is, again, if somebody writes the message down onto a piece of paper. Also the characters shouldn't be used for the same character, because of the whole doppelganger problem.
+2. (Actually #3) This didn't seem to be an issue in mIRC. It could seem to tell the difference between へ (Hiragana) and ヘ (Katakana). The only issue that arises with this is, again, if somebody writes the message down onto a piece of paper. Also the characters shouldn't be used for the same character, because of the whole doppelganger problem.
