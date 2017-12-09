@@ -12,7 +12,7 @@ And <a href="https://pastebin.com/raw/QwN9NQrg">here's</a> [pastebin] another on
 1. <s>Wondering if spaces should also be encrypted.</s>
 2. Wondering if invalid characters should use the "similar looking" characters. (ロ & 口, ニ & 二, etc.)
 3. <s>Maybe a way of using similar looking characters as long as there's a way of checking the duplicates twice (E.g. ロ wasn't found, so it's probably the other one). The only problem with this is if someone writes down the ciphertext.</s>
-4. Null=<chars> - Basically characters that represent no value, but randomly added to a message purely to slow down decryption attacks. (Would be ignored during decoding.)
+4. Null=[chars] - Basically characters that represent no value, but randomly added to a message purely to slow down decryption attacks. (Would be ignored during decoding.)
 
 <h1>Progress:</h1>
 
