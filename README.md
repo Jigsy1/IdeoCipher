@@ -23,4 +23,4 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 1. Added. Basically it checks to see if Space=... is in the .ini.
 2.
 3. This didn't seem to be an issue in mIRC. It could seem to tell the difference between へ (Hiragana) and ヘ (Katakana). The only issue that arises with this is, again, if somebody writes the message down onto a piece of paper. Also the characters shouldn't be used for the same character, because of the whole doppelgänger problem.
-4. Added, but currently testing for the time being.
+4. Added. Basically it checks to see if Null=... is in the .ini. (Currently testing for the time being.)
