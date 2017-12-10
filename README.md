@@ -5,11 +5,11 @@ Not in the habit of rehashing things I've already written, so a blog post I wrot
 
 <h1>Decryption Challenges:</h1>
 
-If you want to try decrypting some messages I wrote purely to see if they can be cracked...
+If you want to try decrypting some messages I wrote purely to see if they can be cracked, click these pastebin links:
 
-1. <a href="https://pastebin.com/raw/frQ7SMZ3">1st implementation</a> - Uses a different key structure than the example.
-2. <a href="https://pastebin.com/raw/QwN9NQrg">2nd implementation</a> - Encoded spaces, different key structure than the first.
-3. <a href="https://pastebin.com/raw/6A6rs43Y">3rd implementation</a> - Encoded spaces, null characters; different key structure than the other two.
+1. <a href="https://pastebin.com/raw/frQ7SMZ3">1st implementation</a> - Straightforward. Uses a different key structure than the example, obviously.
+2. <a href="https://pastebin.com/raw/QwN9NQrg">2nd implementation</a> - Spaces encoded. Uses a different key structure than the first implementation.
+3. <a href="https://pastebin.com/raw/6A6rs43Y">3rd implementation</a> - Spaces encoded and null characters inserted into the string. Uses a different key structure than the other two implementations.
 
 <h1>Ideas:</h1>
 
@@ -17,6 +17,7 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 2. Wondering if invalid characters should use the "similar looking" characters. (ロ & 口, ニ & 二, etc.)
 3. <s>Maybe a way of using similar looking characters as long as there's a way of checking the duplicates twice (E.g. ロ wasn't found, so it's probably the other one). The only problem with this is if someone writes down the ciphertext.</s>
 4. <s>Null=[chars] - Basically characters that represent no value, but randomly added to a message purely to slow down decryption attacks. (Would be ignored during decoding.)</s>
+5. Cyber-Wire on IRC suggested inserting fake spaces into the string if Spaces=... is true.
 
 <h1>Progress:</h1>
 
