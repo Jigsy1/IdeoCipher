@@ -1,7 +1,7 @@
 # JCC
 Japanese Character Cipher - Proof of Concept
 
-Not in the habit of rehashing things I've already written, so a blog post I wrote <a href="https://jigsy1.blogspot.com/2017/12/my-attempt-at-creating-substitution.html">here</a> [jigsy1.blogspot.com] can explain this.
+I'm not really in the habit of rehashing things I've already written elsewhere; so a blog post I wrote <a href="https://jigsy1.blogspot.com/2017/12/my-attempt-at-creating-substitution.html">here</a> [jigsy1.blogspot.com] can explain this.
 
 <h1>Decryption Challenges:</h1>
 
