@@ -5,26 +5,27 @@
 ; How to use:
 ; -----------
 ; //msg $chan $jcc.encode(Hello!)
-; //msg $chan $jcc.encode(Hello!).strict
 ; //var %t = This, is a line with $!characters mIRC % $+ doesn't really like. | //msg $chan $jcc.encode(%t)
 ; //msg $chan $jcc.decode(償禮幇 凉杞釧 櫛禪滲 峻狛桶哩悸傳鳩檜裡 曉峨嶺焙祐蕪廟鮫結)
 ;
 ; Tweaking:
 ; ---------
-; If you wish to change which number reflects what character, edit Chars under [Order]. E.g.
+; If you wish to change which number reflects what character, edit CharOrder under [Settings]. E.g.
 ;
-; [Order]
-; Chars=!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+; [Settings]
+; CharOrder=!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 ;
 ; ...is now...
 ;
-; [Order]
-; Chars=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/\()[]{}!?+-=%#"'`$&*,.:;<>@^_|~
+; [Settings]
+; CharOrder=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/\()[]{}!?+-=%#"'`$&*,.:;<>@^_|~
 ;
-; If you wish to add more characters, add the character to the end of the Chars under the [Order] section and add the number for that character. So for example, £ onto the current charset would become 95=<chars>.
-; You will need at least two characters because of the "no doppleganger" code.
+; If you wish to add more characters, add the character to the end of the CharOrder under the [Settings] section and add the number for that character. So for example, £ onto the current charset would become 95=<chars>.
+; You will need at least two characters because of the "no dopplegänger" code.
 ;
 ; If you want to encrypt spaces, add Space=<chars> under the [Key] section. Again, you will need at least two characters.
+;
+; If you want to pad the message with characters that have no value, add Null=<chars> under the [Key] section. And again, you will need at least two characters.
 
 alias jcc.decode {
   ; $jcc.decode(text)
@@ -36,12 +37,10 @@ alias jcc.decode {
     inc %1
     if (($asc($mid($1-,%1,1)) == 32) || ($asc($mid($1-,%1,1)) == 160)) { var %2 = %2 $+ $chr(160) }
     ; `-> We need to check if the space is actually a proper space or an emulated space. Once we do that, use $chr(160) to emulate spaces since $chr(32) doesn't work well on mIRC.
-    if ($mid($1-,%1,1) == X) { var %2 = %2 $+ 1,8? }
-    ; `-> Convert any erroneous characters (X) into a ? w/ black text on a yellow background. (Though if you're sending to a channel, be aware of +c or +S modes.)
     else {
       if ($read($jcc.file, w, $+(*=*,$mid($1-,%1,1),*))) {
         var %3 = $gettok($v1,1,61)
-        var %2 = %2 $+ $iif(%3 != Space,$mid(%0,%3,1),$chr(160))
+        if (%3 != Null) { var %2 = %2 $+ $iif(%3 != Space,$mid(%0,%3,1),$chr(160)) }
       }
       ; `-> Otherwise, find the character in the file and convert it. E.g. 醉 => 77 => m
     }
@@ -50,11 +49,13 @@ alias jcc.decode {
   ; `-> Return the output.
 }
 alias jcc.encode {
-  ; $jcc.encode(text)[.strict]
+  ; $jcc.encode(text)
 
   var %0 = $jcc.order
   var %1 = 0
   var %2, %3, %4, %5, %6
+  var %7 = $iif($readini($jcc.file, Keys, Null),1,0)
+  ; `-> Check to see if Null=<chars> are part of the *.ini file. If they're not, it won't matter. Otherwise (See: %7)
   while (%1 < $len($1-)) {
     inc %1
     if ($poscs(%0,$mid($1-,%1,1))) {
@@ -71,6 +72,16 @@ alias jcc.encode {
       ; `-> Set the last character to the new character.
       ;     This reason for this is to make sure the character can never be used again in succession. For example, Grrr => 貌よ一よ is acceptable, whilst Grrr => 貌よよよ is not.
       ;     Having the same character after a space as the last character before a space is also acceptable. E.g. Grrr r => 貌よ一よ よ
+      if (%7 == 1) {
+        ; `-> This means Null=... is part of the *.ini file. Now we just need to check if we should pad the letter with a bonus character.
+        if ($rand(1,$jcc.null.chance.1) >= $int($calc($jcc.null.chance.1 / $jcc.null.chance.2))) {
+          ; `-> The "variables" for these are at the bottom. But if you want to modify the $calc(...) feel free.
+          var %5 = $removecs($readini($jcc.file, Keys, Null),%3)
+          var %6 = $mid(%5,$rand(1,$len(%5)),1)
+          var %2 = %2 $+ %6
+          var %3 = %6
+        }
+      }
     }
     else {
       if ($asc($mid($1-,%1,1)) == 32) {
@@ -83,15 +94,20 @@ alias jcc.encode {
         }
         else { var %2 = %2 $+ $chr(160), %3 = $null }
         ; `-> Use $chr(160) to emulate spaces since $chr(32) doesn't work well on mIRC. Also set the last character to $null.
+        if (%7 == 1) {
+          if ($rand(1,$jcc.null.chance.1) >= $int($calc($jcc.null.chance.1 / $jcc.null.chance.2))) {
+            var %5 = $removecs($readini($jcc.file, Keys, Null),%3)
+            var %6 = $mid(%5,$rand(1,$len(%5)),1)
+            var %2 = %2 $+ %6
+            var %3 = %6
+          }
+        }
+        ; `-> This should hopefully work after the else. It's either this or having the same code twice. (Which would probably be a more sensisble solution?)
       }
-      else {
-        if ($prop == strict) { return }
-        ; `-> If the strict property is used, and an invalid character is found, terminate.
-        else { var %2 = %2 $+ X, %3 = $null }
-        ; `-> Otherwise, change the value to an X. E.g. As you can see, £ isn't part of the %0 variable above. So you either need to write pounds as part of the string, or it'll get changed to X.
-        ;     I do wonder if all the unused characters that look the same like Katakana ロ and Kanji 口 (mouth) could be used instead?
-        ;     Oh, and set the last character to $null.
-      }
+      else { return }
+      ; `-> I've decided to change this. Yes, I know, it sucks. But I felt that having an erroneous character was a flaw; and there's no real way of decoding the X back
+      ;     to it's regular character unless I manage to come up with such a method. Until then, all messages are strict, and you'll need to either write the character
+      ;     as a word (like pounds), or add the character into the *.ini file. (Which you'd probably do if you shared it somebody anyway.)
     }
   }
   return %2
@@ -99,8 +115,11 @@ alias jcc.encode {
 }
 alias -l jcc.file { return $qt($scriptdirJCC.ini) }
 ; `-> If the file is in a different folder or whatever, change this.
-alias -l jcc.order { return $readini($jcc.file, n, Order, Chars) }
+alias -l jcc.null.chance.1 { return 100000 }
+alias -l jcc.null.chance.2 { return 1.29 }
+; `-> For calculating how many times a null character should appear. Feel free to change these.
+alias -l jcc.order { return $readini($jcc.file, n, Settings, CharOrder) }
 ; `-> The only acceptable characters that can be encoded. If you would like to add more like ö or £, for example, you can, but the *.ini file will need updating to reflect this.
-;     So if you add ö onto the end of the [Order]->Chars=...}~, you will need to add 95=<some characters go here> to the *.ini file.
+;     So if you add ö onto the end of the [Settings]->CharOrder=...}~, you will need to add 95=<some characters go here> to the *.ini file.
 
 ; EOF
