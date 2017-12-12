@@ -29,5 +29,5 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 5.
 6. Erroneous character > X has been removed. Until I can come up with a way of sneakily converting an erroneous character > value > back to character, all messages are strict. Live with it.
 
-<h1>Issues (if you find any more post an issue):</h1>
-1. Encoding with Space= enabled, then changing the name to like Spaces= and trying to decode the message will return something like "This!is!a!test." This also occurs with Null=. This shouldn't be an issue however as long as both parties have the exact same .ini structure.
+<h1>(Possible) Issues:</h1>
+1. Encoding with Space= enabled, then changing the name to something like Spaces= and trying to decode the message will return something like "This!is!a!test." The same problem also happens with Null= being renamed. This shouldn't be an issue however as long as both parties have the exact same .ini structure.
