@@ -27,7 +27,7 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 3. This didn't seem to be an issue in mIRC. It could seem to tell the difference between へ (Hiragana) and ヘ (Katakana). The only issue that arises with this is, again, if somebody writes the message down onto a piece of paper. Also the characters shouldn't be used for the same character, because of the whole doppelgänger problem.
 4. Added. Basically it checks to see if Null=... is in the .ini.
 5.
-6. Erroneous character > X has been removed. Until I can come up with a way of sneakily converting an erroneous character > value > back to character, all messages are strict. Live with it.
+6. Erroneous character > X has been removed. Until I can come up with a way of sneakily converting an erroneous character > value > back to character, all messages are strict.
 
 <h1>(Possible) Issues:</h1>
 1. Encoding with Space= enabled, then changing the name to something like Spaces= and trying to decode the message will return something like "This!is!a!test." The same problem also happens with Null= being renamed. This shouldn't be an issue however as long as both parties have the exact same .ini structure.
