@@ -10,6 +10,7 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 1. <a href="https://pastebin.com/raw/frQ7SMZ3">1st implementation</a> - Straightforward. Uses a different key structure than the example, obviously.
 2. <a href="https://pastebin.com/raw/QwN9NQrg">2nd implementation</a> - Spaces encoded. Uses a different key structure than the first implementation.
 3. <a href="https://pastebin.com/raw/6A6rs43Y">3rd implementation</a> - Spaces encoded and null characters inserted into the string. Uses a different key structure than the other two implementations.
+4. TBA - Spaces encoded and null characters inserted into the string. Uses a different key structure than the extended implementation.
 
 <h1>Ideas:</h1>
 
@@ -31,3 +32,6 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 
 <h1>(Possible) Issues:</h1>
 1. Encoding with Space= enabled, then changing the name to something like Spaces= and trying to decode the message will return something like "This!is!a!test." The same problem also happens with Null= being renamed. This shouldn't be an issue however as long as both parties have the exact same .ini structure.
+
+<h1>Other Updates:</h1>
+1. Found a <a href="https://archive.is/NhTlU">very large list</a> of Kanji (>20,000) and created another example key structure file now located in /extended/.
