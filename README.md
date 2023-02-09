@@ -7,10 +7,12 @@ I'm not really in the habit of rehashing things I've already written elsewhere; 
 
 If you want to try decrypting some messages I wrote purely to see if they can be cracked, click these pastebin links:
 
-1. <a href="https://pastebin.com/raw/frQ7SMZ3">1st implementation</a> - Straightforward. Uses a different key structure than the example, obviously. (EASY MODE)
-2. <a href="https://pastebin.com/raw/QwN9NQrg">2nd implementation</a> - Spaces encoded. Uses a different key structure than the first implementation. (NORMAL MODE)
-3. <a href="https://pastebin.com/raw/6A6rs43Y">3rd implementation</a> - Spaces encoded and null characters inserted into the string. Uses a different key structure than the other two implementations. (HARD MODE)
-4. <a href="https://pastebin.com/raw/5LVTgCzE">Extended implementation</a> - Same settings as the third; but uses 27,622 ideographs. Obviously using a different key structure than the example implementation. (LUNATIC MODE)
+09/02/203: Sadly, due to circumstances beyond my control - such as the password for the VeraCrypt file these were stored in being apparently incorrect - I've had to completely remake these. I will make a note of the links and re-add them if possible if by some freak of magic I'm able to get back into the file.
+
+1. <a href="https://github.com/Jigsy1/IdeoCipher/issues/2">1st implementation</a> - Straightforward. Uses a different character order and key structure than the example, obviously. (EASY MODE)
+2. <a href="https://github.com/Jigsy1/IdeoCipher/issues/3">2nd implementation</a> - Spaces encoded. Uses the same character order but key structure than the first implementation. (NORMAL MODE)
+3. <a href="https://github.com/Jigsy1/IdeoCipher/issues/4">3rd implementation</a> - Spaces encoded and padding characters inserted into the string. Uses the same character order but key structure than the other two implementations. (HARD MODE)
+4. <a href="https://github.com/Jigsy1/IdeoCipher/issues/5">Extended implementation</a> - Same settings as the third; but uses the extended file (27,622 ideographs). Uses a different character order and key structure than the example implementation. (LUNATIC MODE)
 
 <h1>Ideas:</h1>
 
