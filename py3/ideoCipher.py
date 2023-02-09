@@ -31,12 +31,14 @@
 # And again, you will need at least two ideographs.
 #
 
-
+import os
 import re
 import secrets
 
 
 # define(s):
+
+IDEO_INI = "Ideo.ini"
 
 CIPHER_TABLE = {}
 FIRST_PADDING_CHANCE = 100000
@@ -149,13 +151,17 @@ def ideoEncode(string):
             char += 1
             continue
         return
-        # `-> End here. Having an erroneous character is a flaw.
+        # ¦-> End here. Having an erroneous character is a flaw.
+        # `-> Either type out the word manually (E.g. pounds vs. £ or add the character to the CharOrder in Ideo.ini.)
     return output
     # `-> Return the output.
 
 def main():
+    if os.path.exists(IDEO_INI) == False:
+        print("Failed to create CIPHER_TABLE! {} is either missing or has been renamed.\n".format(IDEO_INI))
+        return
     # ,-> ConfigParser wasn't handling the *.ini file very well - or at all, for that matter - so this is my working solution.
-    with open("Ideo.ini", "r", encoding="UTF-8") as thisFile:
+    with open(IDEO_INI, "r", encoding="UTF-8") as thisFile:
         for thisLine in thisFile:
             thisNewLine = thisLine.split("=", 1)
             if len(thisNewLine) < 2:
