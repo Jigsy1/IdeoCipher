@@ -14,21 +14,7 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 
 <h1>Ideas:</h1>
 
-1. <s>Wondering if spaces should also be encrypted.</s>
-2. Wondering if invalid characters should use the "similar looking" characters. (ロ & 口, ニ & 二, etc.)
-3. <s>Maybe a way of using similar looking characters as long as there's a way of checking the duplicates twice (E.g. ロ wasn't found, so it's probably the other one). The only problem with this is if someone writes down the ciphertext.</s>
-4. <s>Null=ideographs - Basically characters that represent no value, but randomly added to a message purely to slow down decryption attacks. (Would be ignored during decoding.)</s>
-5. Cyber-Wire on IRC suggested inserting fake spaces into the string if Space=... is true.
-6.
-
-<h1>Progress:</h1>
-
-1. Added. Basically it checks to see if Space=... is in the .ini.
-2.
-3. This didn't seem to be an issue in mIRC. It could seem to tell the difference between へ (Hiragana) and ヘ (Katakana). The only issue that arises with this is, again, if somebody writes the message down onto a piece of paper (like whom, though?). Also the characters shouldn't be used for the same character, because of the whole doppelgänger problem.
-4. Added. Basically it checks to see if Null=... is in the .ini.
-5.
-6. Erroneous character > X has been removed. Until I can come up with a way of sneakily converting an erroneous character > value > back to character, all messages are strict.
+1. Cyber-Wire sevreal years ago on IRC suggested inserting fake spaces into the string if Space=... is true.
 
 <h1>(Possible) Issues:</h1>
 1. Encoding with Space= enabled, then changing the name to something like Spaces= and trying to decode the message will return something like "This!is!a!test." The same problem also happens with Null= being renamed. This shouldn't be an issue however as long as both parties have the exact same .ini structure.
