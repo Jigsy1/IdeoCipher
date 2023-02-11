@@ -18,6 +18,9 @@ TIMESTAMP = str(time.time())
 IDEO_INI = "Ideo.ini"
 OUTPUT_FILE = "Ideo_{}.ini".format(TIMESTAMP)
 
+RANDOMIZE_CHARS = 1
+# `-> Randomize the CharOrder. 1 = Yes; 0 = No.
+
 
 # Function(s):
 
@@ -52,6 +55,18 @@ def main():
                 while char < len(chars):
                     SHUFFLE.append(chars[char])
                     char += 1
+    if RANDOMIZE_CHARS == 1:
+        PRE_ORDER = list(CHAR_ORDER)
+        NEW_ORDER = []
+        ORDER_COUNT = len(PRE_ORDER)
+        while ORDER_COUNT > 0:
+            randomChar = secrets.choice(range(0, len(PRE_ORDER)))
+            NEW_ORDER.append(PRE_ORDER[randomChar])
+            del PRE_ORDER[randomChar]
+            ORDER_COUNT -= 1
+        CHAR_ORDER = ""
+        CHAR_ORDER = "".join(NEW_ORDER)
+        del PRE_ORDER
     # ,-> Shuffle the list randomly at least once.
     KEY_COUNT = len(SHUFFLE)
     PRE_SHUFFLE = []
