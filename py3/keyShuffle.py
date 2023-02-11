@@ -67,6 +67,7 @@ def main():
         CHAR_ORDER = ""
         CHAR_ORDER = "".join(NEW_ORDER)
         del PRE_ORDER
+        del NEW_ORDER
     # ,-> Shuffle the list randomly at least once.
     KEY_COUNT = len(SHUFFLE)
     PRE_SHUFFLE = []
