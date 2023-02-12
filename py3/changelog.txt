@@ -1,0 +1,14 @@
+ideoCipher[py3.11.1][12022023]:
+----------------------------------------
+1. Security fix: ideoCipher.py will now return if a character has less than two characters total.
+2. keyShuffle.py now uses keyShuffle.ini for easily modifiable settings.
+
+
+ideoCipher[py3.11.1][11022023]:
+----------------------------------------
+1. CharOrder can now be randomized depending on RANDOMIZE_CHARS=(0|1) in keyShuffle.py. (Default = 1)
+
+
+ideoCipher[py3.11.1][0902023]:
+----------------------------------------
+1. Initial Python release.
