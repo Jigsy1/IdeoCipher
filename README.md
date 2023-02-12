@@ -19,7 +19,7 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 <h1>Ideas:</h1>
 
 1. Cyber-Wire sevreal years ago on IRC suggested inserting fake spaces into the string if Space=... is true.
-2. Duplicate character for the Python version.
+2. Duplicate character checker for the Python version to warn user if same character is elsewhere in the Keys.
 
 <h1>(Possible) Issues:</h1>
 1. Encoding with Space= enabled, then changing the name to something like Spaces= and trying to decode the message will return something like "This!is!a!test." The same problem also happens with Null= being renamed. This shouldn't be an issue however as long as both parties have the exact same .ini structure.
