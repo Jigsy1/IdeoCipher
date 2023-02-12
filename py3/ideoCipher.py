@@ -48,6 +48,8 @@ SECOND_PADDING_CHANCE = 1.29
 NEWLINE_REGEX = r"[\n\r]+"
 # `-> For splitting on main().
 
+ERR_NEEDCHARS = "Error: {} requires at least two different ideographs."
+
 
 # Function(s):
 
@@ -105,6 +107,9 @@ def ideoEncode(string):
             ideos = CIPHER_TABLE[str(match)]
             ideos = ideos.replace(lastChar, "", 1)
             # `-> Get all the ideographs we can use, minus the one we used last. (Doesn't matter if lastChar is NULL here.)
+            if len(ideos) < 2:
+                print(ERR_NEEDCHARS.format("Index {}".format(match)))
+                return
             current = ideos[secrets.choice(range(0, len(ideos)))]
             # `-> Now get a random ideograph from the ones we can use.
             output = output + current
@@ -122,6 +127,9 @@ def ideoEncode(string):
                 # `-> These DEFINES are at the top of the code. If you want to modify them or the calculation, feel free.
                 ideos = CIPHER_TABLE["Padding"]
                 ideos = ideos.replace(lastChar, "", 1)
+                if len(ideos) < 2:
+                    print(ERR_NEEDCHARS.format("Padding"))
+                    return
                 current = ideos[secrets.choice(range(0, len(ideos)))]
                 output = output + current
                 lastChar = current
@@ -136,6 +144,9 @@ def ideoEncode(string):
             if isCipherKey("Space") == True:
                 ideos = CIPHER_TABLE["Space"]
                 ideos = ideos.replace(lastChar, "", 1)
+                if len(ideos) < 2:
+                    print(ERR_NEEDCHARS.format("Space"))
+                    return
                 current = ideos[secrets.choice(range(0, len(ideos)))]
                 output = output + current
                 lastChar = current
@@ -145,6 +156,9 @@ def ideoEncode(string):
             if secrets.choice(range(0, FIRST_PADDING_CHANCE)) >= int((FIRST_PADDING_CHANCE / SECOND_PADDING_CHANCE)):
                 ideos = CIPHER_TABLE["Padding"]
                 ideos = ideos.replace(lastChar, "", 1)
+                if len(ideos) < 2:
+                    print(ERR_NEEDCHARS.format("Padding"))
+                    return
                 current = ideos[secrets.choice(range(0, len(ideos)))]
                 output = output + current
                 lastChar = current
