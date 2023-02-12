@@ -105,7 +105,7 @@ def ideoEncode(string):
             match = CIPHER_TABLE["CharOrder"].rfind(string[char])
             # `-> Convert the character to a number. E.g. ! = 0, " = 1, | = 91, etc.
             ideos = CIPHER_TABLE[str(match)]
-            ideos = ideos.replace(lastChar, "", 1)
+            ideos = ideos.replace(lastChar, "")
             # `-> Get all the ideographs we can use, minus the one we used last. (Doesn't matter if lastChar is NULL here.)
             if len(ideos) < 2:
                 print(ERR_NEEDCHARS.format("Index {}".format(match)))
@@ -126,7 +126,7 @@ def ideoEncode(string):
             if secrets.choice(range(0, FIRST_PADDING_CHANCE)) >= int((FIRST_PADDING_CHANCE / SECOND_PADDING_CHANCE)):
                 # `-> These DEFINES are at the top of the code. If you want to modify them or the calculation, feel free.
                 ideos = CIPHER_TABLE["Padding"]
-                ideos = ideos.replace(lastChar, "", 1)
+                ideos = ideos.replace(lastChar, "")
                 if len(ideos) < 2:
                     print(ERR_NEEDCHARS.format("Padding"))
                     return
@@ -143,7 +143,7 @@ def ideoEncode(string):
             # >-> I simply didn't want to set up a flag to skip this check so I'm checking it twice.
             if isCipherKey("Space") == True:
                 ideos = CIPHER_TABLE["Space"]
-                ideos = ideos.replace(lastChar, "", 1)
+                ideos = ideos.replace(lastChar, "")
                 if len(ideos) < 2:
                     print(ERR_NEEDCHARS.format("Space"))
                     return
@@ -155,7 +155,7 @@ def ideoEncode(string):
                 continue
             if secrets.choice(range(0, FIRST_PADDING_CHANCE)) >= int((FIRST_PADDING_CHANCE / SECOND_PADDING_CHANCE)):
                 ideos = CIPHER_TABLE["Padding"]
-                ideos = ideos.replace(lastChar, "", 1)
+                ideos = ideos.replace(lastChar, "")
                 if len(ideos) < 2:
                     print(ERR_NEEDCHARS.format("Padding"))
                     return
