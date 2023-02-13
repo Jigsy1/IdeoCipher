@@ -9,7 +9,7 @@ If you want to try decrypting some messages I wrote purely to see if they can be
 
 09/02/2023: Sadly, due to circumstances beyond my control - such as the password for the VeraCrypt file these were stored in being apparently incorrect - I've had to completely remake these. I will make a note of the links and re-add them if possible if by some freak of magic I'm able to get back into the file.
 
-22/02/2023: Turns out two of the unused Characters had been part of the main character base for the last six years. Therefore, if you plan on trying to crack these, I recommend adding all of the unused characters to the roster. (Since a computer can tell the difference between the two.)
+12/02/2023: Turns out two of the unused Characters had been part of the main character base for the last six years. Therefore, if you plan on trying to crack these, I recommend adding all of the unused characters to the roster. (Since a computer can tell the difference between the two.)
 
 1. <a href="https://github.com/Jigsy1/IdeoCipher/issues/2">1st implementation</a> - Straightforward. Uses a different character order and key structure than the example, obviously. (EASY MODE)
 2. <a href="https://github.com/Jigsy1/IdeoCipher/issues/3">2nd implementation</a> - Spaces encoded. Uses the same character order but key structure is different than the first implementation. (NORMAL MODE)
